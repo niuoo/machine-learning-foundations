@@ -16,7 +16,7 @@ def train(rand=False, alpha=1):
     idx = range(LEN)
     if rand:
         idx = random.sample(idx, LEN)  # 打乱循环的次序
-    t = 0
+    cnt = 0
     w = np.zeros(5)
     while True:
         flag = True
@@ -25,10 +25,10 @@ def train(rand=False, alpha=1):
             if np.sign(w * MX[k].T) != Y[k]:
                 w = w + alpha * Y[k] * MX[k]
                 flag = False
-                t += 1
+                cnt += 1
         if flag == True:
             break
-    return t
+    return cnt
 
 
 def pre_random(n, alpha=1):
