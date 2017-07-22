@@ -20,10 +20,9 @@ def train(rand=False, alpha=1):
     w = np.zeros(5)
     while True:
         flag = True
-        for i in xrange(LEN):
-            k = idx[i]
-            if np.sign(w * MX[k].T) != Y[k]:
-                w = w + alpha * Y[k] * MX[k]
+        for i in idx:
+            if np.sign(w * MX[i].T) != Y[i]:
+                w = w + alpha * Y[i] * MX[i]
                 flag = False
                 cnt += 1
         if flag == True:
@@ -40,9 +39,11 @@ def pre_random(n, alpha=1):
 
 
 def main():
-    print train(False, 1)  # question 15 , the answer is 45
-    print pre_random(2000, alpha=1)  # question 16 , the answer is 40. The process will last about 2 minutes
-    print pre_random(2000, alpha=0.5)  # question 17 , the answer is 39 or 40. The process will last about 2 minutes
+    print train(False, 1)  # question 15 , output: 45
+    # The process will last about 2 minutes
+    print pre_random(2000, alpha=1)  # question 16 , output: 39 or 40.
+    # The process will last about 2 minutes
+    print pre_random(2000, alpha=0.5)  # question 17 , output: 39 or 40.
 
 
 if __name__ == '__main__':
