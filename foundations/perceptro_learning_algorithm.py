@@ -7,15 +7,15 @@ data = pd.read_csv('https://www.csie.ntu.edu.tw/~htlin/mooc/datasets/mlfound_mat
                    sep="\s|\t", engine='python')
 
 Y = data[4]
-LEN = len(Y)
+N = len(Y)
 MX = np.mat(data[[0, 1, 2, 3]])  # 将前4列数据矩阵化
-MX = np.c_[np.ones(LEN), MX]  # 增加第一列全部为1
+MX = np.c_[np.ones(N), MX]  # 增加第一列全部为1
 
 
 def train(rand=False, alpha=1):
-    idx = range(LEN)
+    idx = range(N)
     if rand:
-        idx = random.sample(idx, LEN)  # 打乱循环的次序
+        idx = random.sample(idx, N)  # 打乱循环的次序
     cnt = 0
     w = np.zeros(5)
     while True:
@@ -40,7 +40,7 @@ def pre_random(n, alpha=1):
 
 def main():
     print train(False, 1)  # question 15 , output: 45
-    # The process will last about 2 minutes
+    # The process will last for about 2 minutes
     print pre_random(2000, alpha=1)  # question 16 , output: 39 or 40.
     # The process will last about 2 minutes
     print pre_random(2000, alpha=0.5)  # question 17 , output: 39 or 40.
